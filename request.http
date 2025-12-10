@@ -1,0 +1,59 @@
+@baseUrl = http://localhost:8000/api
+@eventoId = 5
+
+### 1. GET todos los eventos (Status: 200)
+# Devuelve un array con todos los eventos registrados
+GET {{baseUrl}}/eventos
+Accept: application/json
+
+### 2. POST crear nuevo evento (Status: 201)
+# Crea un nuevo evento y devuelve la entidad creada con su id
+POST {{baseUrl}}/eventos
+Content-Type: application/json
+
+{
+  "titulo": "Escuela Pública de Código",
+  "descripcion": "Finaliza oficialmente la etapa 2 de actividad 5A",
+  "fecha_inicio": "2025-06-01",
+  "fecha_fin": "2025-06-11",
+  "ubicacion": "Meet"
+}
+
+### 3. GET evento específico por id (Status: 200 o 404)
+# Reemplaza {{eventoId}} con el id del evento que quieres obtener
+# Si el id no existe, devuelve 404
+GET {{baseUrl}}/eventos/{{eventoId}}
+Accept: application/json
+
+### 4. PUT actualizar evento (Status: 200)
+# Actualiza todos los campos del evento especificado
+# Reemplaza {{eventoId}} con el id que deseas actualizar
+PUT {{baseUrl}}/eventos/{{eventoId}}
+Content-Type: application/json
+
+{
+  "titulo": "EPC",
+  "descripcion": "Finaliza la etapa 3 de actividad 5A",
+  "fecha_inicio": "2025-06-09",
+  "fecha_fin": "2025-06-11",
+  "ubicacion": "Google meet"
+}
+
+### 5. DELETE eliminar evento (Status: 200)
+# Elimina el evento especificado de la base de datos
+# Reemplaza {{eventoId}} con el id que deseas eliminar
+DELETE {{baseUrl}}/eventos/{{eventoId}}
+Accept: application/json
+
+###  6. Intentar GET evento eliminado (Status: 404)
+# Intenta obtener un evento que ya fue eliminado
+# Debe retornar 404 Not Found
+GET {{baseUrl}}/eventos/{{eventoId}}
+Accept: application/json
+
+###  INSTRUCCIONES
+# 1. Modifica @eventoId en la línea 2 con el id del evento que quieres probar
+# 2. Haz clic en "Send Request" (botón que aparece encima de cada solicitud)
+# 3. Verás la respuesta en el panel lateral derecho
+# 4. Para Codespaces: reemplaza http://localhost:8000 por https://TUDIRECCIÓN-8000.app.github.dev
+
